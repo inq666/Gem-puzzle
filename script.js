@@ -118,9 +118,6 @@ class Fifteen {
 
   createGame(size) {
     this.textChangeSize.innerHTML = `<b>Current size: ${size}x${size}</b><br>Other field sizes:`;
-
-    this.box.style.width = `${size * 100 + 2}px`;
-    this.box.style.height = `${size * 100}px`;
     const fieldSize = size ** 2;
     if (this.gameFieldArr.length === 0) {
       for (let j = 1; j < fieldSize; j++) {
@@ -134,17 +131,20 @@ class Fifteen {
   changeSizeField(size) {
     clearInterval(this.timerId);
     this.stopGame.style.display = 'block';
-    this.box.style.width = `${size * 100 + 2}px`;
-    this.box.style.height = `${size * 100}px`;
     this.size = size;
     this.gameFieldArr = [];
+    this.changeResize();
     this.createGame(size);
   }
 
   changeSizeListener(event) {
-    if (event.target.tagName != 'SPAN') {
+    if (event.target.tagName !== 'SPAN') {
       return;
     }
+    const div = document.querySelector('.k1');
+    const widthDiv = parseFloat(getComputedStyle(div).width);
+    this.box.style.width = `${this.size * widthDiv + 2}px`;
+    this.box.style.height = `${this.size * widthDiv}px`;
     const target = parseInt(event.target.textContent);
     if (this.size === target) {
       return;
@@ -169,6 +169,7 @@ class Fifteen {
     document.querySelector('.kspace').addEventListener('drop', () => {
       this.movePuzzle(this.dropItem);
     });
+    this.changeResize();
   }
 
   addListener() {
@@ -192,6 +193,29 @@ class Fifteen {
     this.box.addEventListener('dragstart', (event) => {
       this.dropItem = event.toElement;
     });
+    window.addEventListener('resize', () => this.changeResize());
+  }
+
+  changeResize() {
+    const widthWindow = document.documentElement.clientWidth;
+    const div = document.querySelector('.k1');
+    const widthDiv = parseFloat(getComputedStyle(div).width);
+    if (widthWindow > '900') {
+      this.box.style.width = `${this.size * 100 + 2}px`;
+      this.box.style.height = `${this.size * 100}px`;
+    }
+    if (widthWindow < '900') {
+      this.box.style.width = `${this.size * 75 + 2}px`;
+      this.box.style.height = `${this.size * 75}px`;
+    }
+    if (widthWindow < '600') {
+      this.box.style.width = `${this.size * 50 + 2}px`;
+      this.box.style.height = `${this.size * 50}px`;
+    }
+    if (widthWindow < '300') {
+      this.box.style.width = `${this.size * 25 + 2}px`;
+      this.box.style.height = `${this.size * 25}px`;
+    }
   }
 
   saveData() {

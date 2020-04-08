@@ -14,8 +14,6 @@ body {
 
   display: flex;
   flex-wrap: wrap;
-  width: 402px;
-  height: 400px;
   margin: 0 auto;
 
   font-family: Roboto,Segoe UI,"Tahoma, sans-serif";
@@ -188,13 +186,7 @@ button:hover {
   opacity: 0;
 }
 
-@media (max-width: 900px) {
-  #box {
-width: 302px;
-height: 300px;
-
-  }
-
+@media (max-width: 901px) {
   #box > div {
     width: 75px;
     height: 75px;
@@ -202,12 +194,7 @@ height: 300px;
   }
 }
 
-@media (max-width: 600px) {
-  #box {
-    width: 202px;
-    height: 200px;
-  }
-
+@media (max-width: 601px) {
   #box > div {
     width: 50px;
     height: 50px;
@@ -217,12 +204,7 @@ height: 300px;
 }
 
 
-@media (max-width: 300px) {
-  #box {
-    width: 102px;
-    height: 100px;
-  }
-
+@media (max-width: 301px) {
   #box > div {
     width: 25px;
     height: 25px;
