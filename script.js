@@ -4,8 +4,8 @@ class Fifteen {
     this.countMove = +(localStorage.getItem('countMove')) || 0;
     this.size = +(localStorage.getItem('size')) || 4;
     this.gameFieldArr = JSON.parse(localStorage.getItem('gameFieldArr')) || [];
-    this.min = localStorage.getItem('min') || 0;
-    this.sec = localStorage.getItem('sec') || 0;
+    this.min = JSON.parse(localStorage.getItem('min')) || 0;
+    this.sec = JSON.parse(localStorage.getItem('sec')) || 0;
   }
 
   createDOM() {
@@ -85,7 +85,8 @@ class Fifteen {
 
     this.timer = document.createElement('div');
     this.timer.classList.add('infoNum');
-    this.timer.textContent = '00:00';
+    this.timer.textContent = 'TIME';
+    this.timerId = setInterval(() => this.tick(), 1000);
     document.body.prepend(this.timer);
 
     this.leaderboardTable = document.createElement('div');
@@ -287,13 +288,13 @@ class Fifteen {
   shuffleArr() {
     this.countMove = 0;
     this.stopGame.style.display = 'none';
+    console.log(this.min, this.sec)
     this.min = 0;
     this.sec = 0;
     this.count.textContent = `Count: ${this.countMove}`;
     this.timer.textContent = '00:00';
     this.gameFieldArr.sort(() => Math.random() - 0.5);
     this.draw();
-    console.log
     if (this.timerId) {
       return;
     }

@@ -136,7 +136,7 @@ button:hover {
   top: 0;
   z-index: 50;
 
-  display: block;
+  display: none;
   width: 100vw;
   height: 100vh;
 
