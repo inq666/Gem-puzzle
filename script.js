@@ -130,6 +130,7 @@ class Fifteen {
 
   changeSizeField(size) {
     clearInterval(this.timerId);
+    this.timerId = 0;
     this.stopGame.style.display = 'block';
     this.size = size;
     this.gameFieldArr = [];
@@ -176,6 +177,7 @@ class Fifteen {
     this.stop.addEventListener('click', () => {
       this.stopGame.style.display = 'block';
       clearInterval(this.timerId);
+      this.timerId = 0;
     });
     this.buttonLeadereOk.addEventListener('click', () => {
       this.buttonLeadereOk.style.display = 'none';
@@ -291,6 +293,7 @@ class Fifteen {
     this.timer.textContent = '00:00';
     this.gameFieldArr.sort(() => Math.random() - 0.5);
     this.draw();
+    console.log
     if (this.timerId) {
       return;
     }
@@ -304,6 +307,7 @@ class Fifteen {
       }
     }
     clearInterval(this.timerId);
+    this.timerId = 0;
     setTimeout(() => this.congratulation.style.display = 'block', 200);
     this.messageBlock.innerHTML = `<b>YOU WON!</b> <br> Moves: ${this.countMove}<br> Time: ${this.timer.textContent}`;
     this.leaderArray.push(`${this.countMove} ${this.timer.textContent}`);
