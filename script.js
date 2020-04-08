@@ -212,8 +212,8 @@ class Fifteen {
       this.box.style.height = `${this.size * 75}px`;
     }
     if (widthWindow < '600') {
-      this.box.style.width = `${this.size * 50 + 2}px`;
-      this.box.style.height = `${this.size * 50}px`;
+      this.box.style.width = `${this.size * 30 + 2}px`;
+      this.box.style.height = `${this.size * 30}px`;
     }
     if (widthWindow < '300') {
       this.box.style.width = `${this.size * 25 + 2}px`;
@@ -227,6 +227,7 @@ class Fifteen {
     localStorage.setItem('sec', this.sec);
     localStorage.setItem('size', this.size);
     localStorage.setItem('gameFieldArr', JSON.stringify(this.gameFieldArr));
+    setTimeout(() => alert( 'Your game has been saved!', 1000));
   }
 
   getTransform(div) {
