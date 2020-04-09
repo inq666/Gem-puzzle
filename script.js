@@ -118,6 +118,9 @@ class Fifteen {
   }
 
   createGame(size) {
+    if (!localStorage.getItem('countMove')) {
+      this.stopGame.style.display = 'block';
+    }
     this.textChangeSize.innerHTML = `<b>Current size: ${size}x${size}</b><br>Other field sizes:`;
     const fieldSize = size ** 2;
     if (this.gameFieldArr.length === 0) {
@@ -227,7 +230,7 @@ class Fifteen {
     localStorage.setItem('sec', this.sec);
     localStorage.setItem('size', this.size);
     localStorage.setItem('gameFieldArr', JSON.stringify(this.gameFieldArr));
-    setTimeout(() => alert( 'Your game has been saved!', 1000));
+    setTimeout(() => alert('Your game has been saved!', 1000));
   }
 
   getTransform(div) {
